@@ -25,7 +25,7 @@ int main () {
 
   std::ofstream fout ("/Users/fred.christensen/Dropbox/school/Algorithms/closest-point/results.csv");
   std::cout << "\n\n";
-  fout << "Number Of Points, Random Points (Simple), Random Points (Slow), Random Points (Fast), Hex Points (Simple), Hex Points (Slow), Hex Points (Fast), Mixed Points (Simple), Mixed Points (Slow), Mixed Points (Fast)\n";
+  fout << "Number Of Points, Random Points (Simple), Random Points (Slow), Random Points (Fast), Hex Points (Simple), Hex Points (Slow), Hex Points (Fast), Mixed Points (Simple), Mixed Points (Slow), Mixed Points (Fast)" << std::endl;
   std::cout << "Number Of Points, Random Points (Simple), Random Points (Slow), Random Points (Fast), Hex Points (Simple), Hex Points (Slow), Hex Points (Fast), Mixed Points (Simple), Mixed Points (Slow), Mixed Points (Fast)\n";
 
   for (int i = 2; i < pow(2, 16); i *= 2) {
@@ -64,7 +64,7 @@ int main () {
     fout << tools::average(resMixSimple)  << ", ";
     fout << tools::average(resMixSlow)    << ", ";
     fout << tools::average(resMixFast)    << ", ";
-    fout << "\n";
+    fout << std::endl;
 
     std::cout << i << ", ";
     std::cout << tools::average(resRandSimple) << ", ";
@@ -130,7 +130,7 @@ std::vector<std::pair<double, double> > hexGrid (int n) {
 
 std::vector<std::pair<double, double> > mostlyHexGrid (int n) {
   auto points = hexGrid ((int)(n * 0.95));
-  for (auto i = points.size(); i <= n; ++i) {
+  for (auto i = points.size(); i < n; ++i) {
     points.push_back(randPoint());
   }
   return points;
@@ -148,7 +148,7 @@ double distance (std::pair<double, double> p1, std::pair<double, double> p2) {
 double solveSimple (std::vector<std::pair<double, double> > points) {
   double minDistance = 999999.9;
   for (auto i = 0; i < points.size(); ++i) {
-    for (auto j = i + 1; j < points.size(); ++i) {
+    for (auto j = i + 1; j < points.size(); ++j) {
       minDistance = std::min(minDistance, distance(points[i], points[j]));
     }
   }
